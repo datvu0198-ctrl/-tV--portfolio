@@ -1,7 +1,6 @@
 import { motion } from "framer-motion"
 import {
   FaPython,
-  FaGithub,
   FaBrain,
   FaCamera
 } from "react-icons/fa"

@@ -1,6 +1,6 @@
 import { motion } from "framer-motion"
 import { FaGithub, FaReact, FaNodeJs, FaDatabase } from "react-icons/fa"
-import { SiTypescript, SiMysql, SiExpress } from "react-icons/si"
+
 
 function PhoneShop() {
   return (
