@@ -10,8 +10,9 @@ import Loader from "../components/Loader"
 
 function Home() {
 
-  // cursor glow
   useEffect(() => {
+    if (window.innerWidth < 768) return
+
     const glow = document.querySelector(".cursor-glow") as HTMLElement
 
     const move = (e: MouseEvent) => {
@@ -28,22 +29,26 @@ function Home() {
   return (
     <div className="min-h-screen text-white relative overflow-hidden bg-[#050507]">
 
-      {/* LOADER */}
       <Loader />
-
-      {/* CYBER BACKGROUND */}
       <CyberBackground />
 
-      {/* CURSOR GLOW */}
-      <div className="cursor-glow"></div>
+      {/* cursor */}
+      <div className="cursor-glow hidden md:block"></div>
 
       {/* NAVBAR */}
-      <nav className="navbar">
-        <h1 className="text-gradient font-bold text-lg">
+      <nav
+        className="
+          fixed top-0 left-0 w-full z-50
+          flex justify-between items-center
+          px-4 md:px-10 py-4
+          bg-black/40 backdrop-blur-md
+        "
+      >
+        <h1 className="text-gradient font-bold text-sm md:text-lg">
           DatVu.dev
         </h1>
 
-        <div className="flex items-center gap-6">
+        <div className="hidden md:flex items-center gap-6">
           <a href="#hero">Home</a>
           <a href="#skills">Skills</a>
           <a href="#projects">Projects</a>
@@ -51,39 +56,42 @@ function Home() {
         </div>
       </nav>
 
-      {/* SECTIONS */}
-      <section id="hero"><Hero /></section>
-      <section id="skills"><Skills /></section>
-      <section id="projects"><Projects /></section>
-      <section id="experience"><Experience /></section>
-      <section id="education"><Education /></section>
+      {/* CONTENT */}
+      <div className="pt-16 md:pt-20">
 
-      {/* CONTACT */}
-      <section className="section text-center">
-        <h2 className="text-4xl font-black mb-6 text-gradient">
-          Let’s Build Something 🚀
-        </h2>
+        <section id="hero"><Hero /></section>
+        <section id="skills"><Skills /></section>
+        <section id="projects"><Projects /></section>
+        <section id="experience"><Experience /></section>
+        <section id="education"><Education /></section>
 
-        <p className="text-zinc-400 mb-8">
-          Freelance / AI / Web App — mình nhận hết 😎
-        </p>
+        {/* CONTACT */}
+        <section className="px-4 sm:px-6 py-16 text-center">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-black mb-6 text-gradient">
+            Let’s Build Something 🚀
+          </h2>
 
-        <div className="flex justify-center gap-4 flex-wrap">
-          <a href="mailto:datvu0198@gmail.com" className="btn-future">
-            📧 Email
-          </a>
+          <p className="text-zinc-400 mb-8 text-sm sm:text-base">
+            Freelance / AI / Web App — mình nhận hết 😎
+          </p>
 
-          <a
-            href="https://github.com/datvu0198-ctrl/DatVu"
-            target="_blank"
-            className="glass px-6 py-3 rounded-xl"
-          >
-            GitHub
-          </a>
-        </div>
-      </section>
+          <div className="flex flex-col sm:flex-row justify-center gap-4">
+            <a href="mailto:datvu0198@gmail.com" className="btn-future w-full sm:w-auto">
+              📧 Email
+            </a>
 
-      <Footer />
+            <a
+              href="https://github.com/datvu0198-ctrl/DatVu"
+              target="_blank"
+              className="glass px-6 py-3 rounded-xl w-full sm:w-auto text-center"
+            >
+              GitHub
+            </a>
+          </div>
+        </section>
+
+        <Footer />
+      </div>
     </div>
   )
 }

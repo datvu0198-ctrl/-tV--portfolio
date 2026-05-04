@@ -3,6 +3,26 @@
 @tailwind utilities;
 
 /* =========================
+   🌑 DARK FUTURISTIC THEME
+========================= */
+:root {
+  --bg: #050507;
+  --bg-soft: #0a0a0f;
+
+  --text: #e5e7eb;
+  --text-dim: #9ca3af;
+
+  --accent: #6366f1;
+  --accent-2: #22d3ee;
+  --gradient: linear-gradient(135deg, #6366f1, #22d3ee);
+
+  --border: rgba(255,255,255,0.08);
+  --glass: rgba(255,255,255,0.04);
+
+  --glow: 0 0 30px rgba(99,102,241,0.4);
+}
+
+/* =========================
    GLOBAL RESET
 ========================= */
 * {
@@ -13,24 +33,70 @@
 body {
   margin: 0;
   padding: 0;
-  background: #050507;
-  color: white;
+  background: var(--bg);
+  color: var(--text);
   font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
 }
 
 /* =========================
-   CURSOR GLOW
+   TEXT GRADIENT
+========================= */
+.text-gradient {
+  background: var(--gradient);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* =========================
+   GLASS
+========================= */
+.glass {
+  background: var(--glass);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  transition: all 0.3s ease;
+}
+
+.glass:hover {
+  border-color: var(--accent);
+  box-shadow: var(--glow);
+  transform: translateY(-6px);
+}
+
+/* =========================
+   BUTTON
+========================= */
+.btn-future {
+  padding: 10px 18px;
+  border-radius: 12px;
+  font-weight: 600;
+  background: var(--gradient);
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-future:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 25px rgba(99,102,241,0.7);
+}
+
+/* =========================
+   CURSOR GLOW (DESKTOP ONLY)
 ========================= */
 .cursor-glow {
   position: fixed;
-  width: 300px;
-  height: 300px;
+  width: 260px;
+  height: 260px;
   background: radial-gradient(circle, rgba(99,102,241,0.25), transparent 70%);
   border-radius: 50%;
-  pointer-events: none;
   transform: translate(-50%, -50%);
   pointer-events: none;
-  z-index: -1; 
+  z-index: -1;
 }
 
 /* =========================
@@ -81,4 +147,25 @@ body {
 ========================= */
 .skill-glow {
   box-shadow: 0 0 15px rgba(99,102,241,0.6);
+}
+
+/* =========================
+   SCROLLBAR (PRO LOOK)
+========================= */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--accent);
+  border-radius: 10px;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 768px) {
+  .cursor-glow {
+    display: none;
+  }
 }

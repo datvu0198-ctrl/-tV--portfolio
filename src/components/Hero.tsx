@@ -12,37 +12,83 @@ const fadeUp = {
 
 function Hero() {
   return (
-    <section className="min-h-screen flex items-center justify-center px-6 relative z-10">
-      
+    <section
+      className="
+        min-h-[80vh] md:min-h-screen
+        flex items-center justify-center
+        px-4 sm:px-6
+        relative z-10
+      "
+    >
       {/* background glow */}
-      <div className="hero-bg"></div>
+      <div className="hero-bg pointer-events-none"></div>
 
       <motion.div
         variants={fadeUp}
         initial="hidden"
         animate="show"
-        className="text-center max-w-4xl"
+        className="text-center max-w-4xl w-full"
       >
-        <p className="uppercase tracking-[8px] text-cyan-400 mb-4 text-sm">
+        {/* role */}
+        <p className="uppercase tracking-[4px] sm:tracking-[6px] md:tracking-[8px] text-cyan-400 mb-4 text-xs sm:text-sm">
           Fullstack Developer
         </p>
 
-        <h1 className="text-7xl md:text-8xl font-black leading-[1.2] pb-2 text-gradient">
+        {/* name */}
+        <h1
+          className="
+            text-4xl 
+            sm:text-5xl 
+            md:text-7xl 
+            lg:text-8xl 
+            font-black 
+            leading-tight 
+            pb-2 
+            text-gradient
+          "
+        >
           Vũ Thành Đạt
         </h1>
 
-        <p className="text-zinc-400 text-lg md:text-xl leading-9 max-w-3xl mx-auto">
+        {/* description */}
+        <p
+          className="
+            text-sm 
+            sm:text-base 
+            md:text-lg 
+            text-zinc-400
+            leading-7 
+            md:leading-9 
+            max-w-3xl 
+            mx-auto
+            px-2 sm:px-0
+          "
+        >
           Xây dựng ứng dụng web hiện đại với React, NodeJS và AI.
           Tập trung vào trải nghiệm người dùng, hiệu suất và hệ thống thực tế.
         </p>
 
-        <div className="flex justify-center gap-5 mt-10 flex-wrap">
-
+        {/* buttons */}
+        <div
+          className="
+            flex 
+            flex-col 
+            sm:flex-row 
+            justify-center 
+            items-center
+            gap-4 
+            mt-10
+          "
+        >
           <a
             href="https://github.com/datvu0198-ctrl/DatVu"
             target="_blank"
             rel="noreferrer"
-            className="btn-future flex items-center gap-3"
+            className="
+              btn-future 
+              flex items-center justify-center gap-3
+              w-full sm:w-auto
+            "
           >
             <FaGithub />
             GitHub
@@ -50,7 +96,13 @@ function Hero() {
 
           <a
             href="mailto:datvu0198@gmail.com"
-            className="glass px-8 py-4 rounded-2xl hover:scale-105 transition"
+            className="
+              glass 
+              px-6 sm:px-8 py-3 sm:py-4
+              rounded-2xl 
+              hover:scale-105 transition
+              w-full sm:w-auto text-center
+            "
           >
             📧 Gmail
           </a>
@@ -59,11 +111,17 @@ function Hero() {
             href="https://zalo.me/0979811524"
             target="_blank"
             rel="noreferrer"
-            className="glass px-8 py-4 rounded-2xl hover:scale-105 transition text-cyan-400"
+            className="
+              glass 
+              px-6 sm:px-8 py-3 sm:py-4
+              rounded-2xl 
+              hover:scale-105 transition 
+              text-cyan-400
+              w-full sm:w-auto text-center
+            "
           >
-            📱 Zalo: 0979 811 524
+            📱 Zalo
           </a>
-
         </div>
       </motion.div>
     </section>

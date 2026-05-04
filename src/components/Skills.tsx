@@ -60,7 +60,11 @@ function SkillCard({ item }: any) {
   const rotateX = useTransform(y, [-100, 100], [8, -8])
   const rotateY = useTransform(x, [-100, 100], [-8, 8])
 
+  const isMobile = typeof window !== "undefined" && window.innerWidth < 768
+
   const handleMouseMove = (e: any) => {
+    if (isMobile) return
+
     const rect = e.currentTarget.getBoundingClientRect()
     x.set(e.clientX - rect.left - rect.width / 2)
     y.set(e.clientY - rect.top - rect.height / 2)
@@ -75,26 +79,40 @@ function SkillCard({ item }: any) {
 
   return (
     <motion.div
-      style={{ rotateX, rotateY }}
+      style={isMobile ? {} : { rotateX, rotateY }}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleLeave}
-      whileHover={{ scale: 1.03 }}
-      className="glass p-8 rounded-3xl transition relative overflow-hidden"
+      whileHover={!isMobile ? { scale: 1.03 } : {}}
+      className="
+        glass 
+        p-5 sm:p-6 md:p-8 
+        rounded-2xl md:rounded-3xl 
+        transition 
+        relative 
+        overflow-hidden
+      "
     >
       {/* glow */}
       <div
-        className={`absolute inset-0 opacity-0 hover:opacity-100 transition duration-500 blur-3xl rounded-3xl ${color.glow}`}
+        className={`
+          absolute inset-0 
+          opacity-0 hover:opacity-100 
+          transition duration-500 
+          blur-3xl 
+          rounded-3xl 
+          ${color.glow}
+        `}
       />
 
-      <div className={`relative z-10 text-5xl mb-6 ${color.icon}`}>
+      <div className={`relative z-10 text-3xl sm:text-4xl md:text-5xl mb-4 md:mb-6 ${color.icon}`}>
         {item.icon}
       </div>
 
-      <h3 className="relative z-10 text-3xl font-bold mb-6">
+      <h3 className="relative z-10 text-xl sm:text-2xl md:text-3xl font-bold mb-4 md:mb-6">
         {item.title}
       </h3>
 
-      <div className="relative z-10 space-y-4">
+      <div className="relative z-10 space-y-3 md:space-y-4">
         {item.skills.map((s: any) => (
           <SkillBar key={s.name} skill={s} color={item.color} />
         ))}
@@ -131,7 +149,7 @@ function SkillBar({ skill, color }: any) {
 
   return (
     <div>
-      <div className="flex justify-between text-sm mb-1">
+      <div className="flex justify-between text-xs sm:text-sm mb-1">
         <span>{skill.name}</span>
         <span className="text-zinc-400">{count}%</span>
       </div>
@@ -153,12 +171,37 @@ function SkillBar({ skill, color }: any) {
 
 function Skills() {
   return (
-    <section className="py-24 px-6 max-w-7xl mx-auto relative z-10">
-      <h2 className="text-5xl font-black mb-16 text-center text-gradient">
+    <section
+      className="
+        py-16 md:py-24 
+        px-4 sm:px-6 
+        max-w-7xl mx-auto 
+        relative z-10
+      "
+    >
+      <h2
+        className="
+          text-3xl 
+          sm:text-4xl 
+          md:text-5xl 
+          font-black 
+          mb-10 md:mb-16 
+          text-center 
+          text-gradient
+        "
+      >
         Skills & Technologies
       </h2>
 
-      <div className="grid md:grid-cols-3 gap-8">
+      <div
+        className="
+          grid 
+          grid-cols-1 
+          sm:grid-cols-2 
+          md:grid-cols-3 
+          gap-6 md:gap-8
+        "
+      >
         {data.map((item) => (
           <SkillCard key={item.title} item={item} />
         ))}
